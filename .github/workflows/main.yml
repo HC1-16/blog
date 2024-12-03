@@ -47,3 +47,4 @@ jobs:
           publish_branch: gh-pages  # 发布到 gh-pages 分支
           publish_dir: docs/.vitepress/dist  # 指定发布目录
           github_token: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub Token 进行身份验证
+          full_commit_message: ${{ github.event.head_commit.message }}

@@ -1,0 +1,36 @@
+name: Deploy VitePress
+
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支的 push 事件
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22.11.0'  # 配置 Node.js 版本
+
+    - name: Install dependencies
+      run: |
+        npm install -g npm@10.9.0  # 使用指定的 npm 版本
+        npm install  # 安装项目依赖
+
+    - name: Build VitePress
+      run: npm run docs:build  # 构建 VitePress 文档
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.PAT_TOKEN }}  # 使用 Personal Access Token 作为 GitHub token
+        publish_dir: docs/.vitepress/dist  # 指定构建输出目录
+        publish_branch: gh-pages  # 推送到 gh-pages 分支
+        allow_empty_commit: true  # 如果没有更改也允许提交
+        keep_files: false  # 删除原有文件，仅保留构建产物

@@ -8,7 +8,7 @@ base:'/blog/',
   description: "11001111的blog",
  build: {
     outDir: 'docs/.vitepress/dist'  // 设置输出目录
-  }
+ },
   enhanceApp({ app, router }) {
     router.afterEach((to) => {
       // 清除所有类

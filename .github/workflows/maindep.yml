@@ -36,4 +36,4 @@ jobs:
         with:
           publish_branch: gh-pages  # 要部署的分支
           publish_dir: docs/.vitepress/dist  # 构建的产物目录
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 提供的自动生成的 token
+          github_token: ${{ secrets.PAT_TOKEN }}  # 使用 GitHub 提供的自动生成的 token
